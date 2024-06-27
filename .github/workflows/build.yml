@@ -23,8 +23,13 @@ jobs:
             g++ \
             cmake \
             make \
+            vim \
+            wget \
             libboost-dev \
-            git
+            git \
+            protobuf-compiler libunwind-dev libprotoc-dev \
+            libgoogle-perftools-dev \
+            libc-ares-dev libcurl4-openssl-dev
 
       - name: Build Muduo
         run: |

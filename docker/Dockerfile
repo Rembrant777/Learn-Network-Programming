@@ -10,8 +10,11 @@ RUN apt-get update && \
     g++ \
     cmake \
     make \
-    libboost-dev \
     git \
+    tree \
+    libprotobuf-dev protobuf-compiler libprotoc-dev libgoogle-perftools-dev \
+    libc-ares-dev libcurl4-openssl-dev \
+    libgtest-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Set the working directory in the container
