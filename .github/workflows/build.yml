@@ -37,14 +37,6 @@ jobs:
           # Replace this with actual build commands once source code is ready
           echo "Mock: Build completed successfully."
 
-      - name: Build and install gtest
-        run: |
-          sudo apt-get install -y libgtest-dev
-          cd /usr/src/gtest
-          sudo cmake .
-          sudo make
-          sudo mv libgtest* /usr/local/lib/    
-
       - name: Run tests
         run: |
           echo "Running tests..."
