@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Adjust Boost paths
-set(BOOST_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/../thirdparty/boost/)
+set(BOOST_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/../submodules/boost_installed/)
 set(BOOST_INCLUDE_DIRS ${BOOST_ROOT}/include)
 set(BOOST_LIBRARY_DIRS ${BOOST_ROOT}/lib)
 
@@ -25,7 +25,7 @@ else()
 endif()
 
 # Adjust gtest paths 
-set(GTEST_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/../thirdparty/gtest)
+set(GTEST_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/../submodules/gtest_installed)
 set(GTEST_INCLUDE_DIRS ${GTEST_ROOT}/include)
 set(GTEST_LIBRARY_DIRS ${GTEST_ROOT}/lib)
 

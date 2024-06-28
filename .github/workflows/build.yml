@@ -55,20 +55,20 @@ jobs:
             echo "boost submodule downloaded successfully."
           fi
 
-      - name: Build Boost
+      - name: Build And Install Boost 
         run: |
           cd submodules/boost
           ./bootstrap.sh
           ./b2 install --prefix=../../submodules/boost_installed
           cd ../..    
 
-      - name: Build GTest
+      - name: Build And Install GTest 
         run: |
           mkdir -p submodules/googletest/build
           cd submodules/googletest/build
           cmake -DCMAKE_INSTALL_PREFIX=../../../submodules/gtest_installed ..
           make
-          make install  
+          make install 
           cd ../../..
       
       - name: Check Boost Installed
@@ -77,6 +77,7 @@ jobs:
             echo "Error: Boost not installed correctly."
             exit 1
           else
+            ls submodules/boost_installed
             echo "Boost installed successfully."
           fi    
           
@@ -86,7 +87,20 @@ jobs:
             echo "Error: GTest not installed correctly."
             exit 1
           else
+            ls submodules/gtest_installed
             echo "GTest installed successfully."
-          fi          
+          fi    
+
+      - name: Compile with build.sh
+        run: |
+          cd m1_workspace
+          chmod +x build.sh
+          ./build.sh build
+
+      - name: Run tests with build.sh
+        run: |
+          cd m1_workspace
+          chmod +x build.sh
+          ./build.sh run          
 
       
