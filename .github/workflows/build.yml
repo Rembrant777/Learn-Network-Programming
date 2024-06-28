@@ -41,6 +41,22 @@ jobs:
             echo "boost submodule downloaded successfully."
           fi
 
+      - name: Build Boost
+        run: |
+          cd submodules/boost
+          ./bootstrap.sh
+          ./b2 install --prefix=../../submodules/boost_installed
+          cd ../..    
+
+      - name: Build GTest
+        run: |
+          mkdir -p submodules/googletest/build
+          cd submodules/googletest/build
+          cmake ..
+          make
+          make install
+          cd ../../..
+
       - name: Install build dependencies
         run: |
           sudo apt-get update
