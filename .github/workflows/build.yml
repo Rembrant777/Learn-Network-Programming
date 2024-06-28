@@ -45,7 +45,7 @@ jobs:
         run: |
           cd submodules/boost
           ./bootstrap.sh
-          ./b2 install --prefix=../../submodules/boost_installed --with-system --with-filesystem --with-serialization --with-thread --with-asio
+          ./b2 install --prefix=../../submodules/boost_installed --with-system --with-filesystem --with-serialization --with-thread 
           cd ../..    
 
       - name: Build GTest
