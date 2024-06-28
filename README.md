@@ -1,4 +1,4 @@
-# Learn Network via CPP 
+# Learn Network via CPP [![Build and Test Muduo](https://github.com/Rembrant777/Learn-Network-Programming/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/Rembrant777/Learn-Network-Programming/actions/workflows/build.yml)
 
 ## References
 * [muduo-book](https://www.amazon.co.jp/-/en/%E9%99%88%E7%A1%95/dp/7121192829)
