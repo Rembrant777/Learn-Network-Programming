@@ -31,13 +31,13 @@ jobs:
             libc-ares-dev libcurl4-openssl-dev
 
       - name: Set execute permission for build script
-        run: chmod +x m1_workspace/build.sh && cd m1_workspace
+        run: chmod +x m1_workspace/build.sh 
 
       - name: Build Muduo
-        run: ./build.sh build
+        run:  cd m1_workspace && ./build.sh build
 
       - name: Run tests
-        run: ./build.sh run
+        run: cd m1_workspace && ./build.sh run
 
       - name: Clean workspace
-        run: ./build.sh clean
+        run: cd m1_workspace && ./build.sh clean
