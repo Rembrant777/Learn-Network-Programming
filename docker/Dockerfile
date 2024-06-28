@@ -14,23 +14,19 @@ RUN apt-get update && \
     tree \
     libprotobuf-dev protobuf-compiler libprotoc-dev libgoogle-perftools-dev \
     libc-ares-dev libcurl4-openssl-dev \
-    libgtest-dev \
     && rm -rf /var/lib/apt/lists/*
-
-# Set the working directory in the container
-WORKDIR /app
-
-# Clone the Muduo repository
-#RUN git clone https://github.com/chenshuo/muduo.git
 
 # Set the working directory to Muduo source
 WORKDIR /app/muduo
 
-# Build Muduo
-#RUN ./build.sh
+# init git submodules like boost and gtest 
+RUN git submodule update --init --recursive 
 
-# Run tests
-RUN ctest --output-on-failure
+# build boost 
+RUN cd thirdparty/boost && ./bootstrap.sh && ./b2 
+
+# build google test 
+RUN cd thirdparty/googletest && mkdir build && cd build && cmake .. && make && make install
 
 # Entry point
 CMD ["/bin/bash"]
