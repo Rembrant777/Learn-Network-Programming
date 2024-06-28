@@ -37,9 +37,19 @@ jobs:
           # Replace this with actual build commands once source code is ready
           echo "Mock: Build completed successfully."
 
-      - name: Run tests
+      - name: Set execute permission for build script
+        run: |
+          chmod +x build.sh
+
+      - name: Build Milestone1 Codes
+        run: |
+          ./build.sh build    
+
+      - name: Run Milestone1 Tests
         run: |
           echo "Running tests..."
-          # Replace this with actual test commands once tests are implemented
-          echo "Mock: Tests passed successfully."
+          ./build.sh run
 
+      - name: Clean Milestone1 Workdir
+        run: |
+          ./build.sh clean     
