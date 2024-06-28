@@ -92,11 +92,13 @@ jobs:
       - name: Compile with build.sh
         run: |
           cd m1_workspace
+          chmod +x build.sh
           ./build.sh build
 
       - name: Run tests with build.sh
         run: |
           cd m1_workspace
+          chmod +x build.sh
           ./build.sh run          
 
       
