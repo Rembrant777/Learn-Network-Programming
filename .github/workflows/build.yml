@@ -45,7 +45,7 @@ jobs:
         run: |
           cd submodules/boost
           ./bootstrap.sh
-          ./b2 install --prefix=../../submodules/boost_installed
+          ./b2 install --prefix=../../submodules/boost_installed --with-system --with-filesystem --with-serialization --with-thread --with-asio
           cd ../..    
 
       - name: Build GTest
@@ -54,7 +54,7 @@ jobs:
           cd submodules/googletest/build
           cmake ..
           make
-          make install
+          make install --prefix=../../submodules/gtest_installed 
           cd ../../..
 
       - name: Install build dependencies
