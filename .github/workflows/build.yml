@@ -25,31 +25,16 @@ jobs:
             make \
             vim \
             wget \
-            libboost-dev \
             git \
             protobuf-compiler libunwind-dev libprotoc-dev \
             libgoogle-perftools-dev \
             libc-ares-dev libcurl4-openssl-dev
 
-      - name: Build Muduo
-        run: |
-          echo "Building Muduo..."
-          # Replace this with actual build commands once source code is ready
-          echo "Mock: Build completed successfully."
-
       - name: Set execute permission for build script
-        run: |
-          chmod +x build.sh
+        run: chmod +x m1_workspace/build.sh
 
-      - name: Build Milestone1 Codes
-        run: |
-          ./build.sh build    
+      - name: Build Muduo
+        run: sh m1_workspace/build.sh build
 
-      - name: Run Milestone1 Tests
-        run: |
-          echo "Running tests..."
-          ./build.sh run
-
-      - name: Clean Milestone1 Workdir
-        run: |
-          ./build.sh clean     
+      - name: Run tests
+        run: sh m1_workspace/build.sh run
