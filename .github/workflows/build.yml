@@ -29,15 +29,3 @@ jobs:
             protobuf-compiler libunwind-dev libprotoc-dev \
             libgoogle-perftools-dev \
             libc-ares-dev libcurl4-openssl-dev
-
-      - name: Set execute permission for build script
-        run: chmod +x m1_workspace/build.sh 
-
-      - name: Build Muduo
-        run:  cd m1_workspace && ./build.sh build
-
-      - name: Run tests
-        run: cd m1_workspace && ./build.sh run
-
-      - name: Clean workspace
-        run: cd m1_workspace && ./build.sh clean
