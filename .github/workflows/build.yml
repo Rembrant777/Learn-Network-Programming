@@ -55,20 +55,20 @@ jobs:
             echo "boost submodule downloaded successfully."
           fi
 
-      - name: Build Boost
+      - name: Build And Install Boost 
         run: |
           cd submodules/boost
           ./bootstrap.sh
           ./b2 install --prefix=../../submodules/boost_installed
           cd ../..    
 
-      - name: Build GTest
+      - name: Build And Install GTest 
         run: |
           mkdir -p submodules/googletest/build
           cd submodules/googletest/build
           cmake -DCMAKE_INSTALL_PREFIX=../../../submodules/gtest_installed ..
           make
-          make install  
+          make install 
           cd ../../..
       
       - name: Check Boost Installed
