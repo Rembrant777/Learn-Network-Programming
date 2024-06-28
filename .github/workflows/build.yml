@@ -66,9 +66,9 @@ jobs:
         run: |
           mkdir -p submodules/googletest/build
           cd submodules/googletest/build
-          cmake ..
+          cmake -DCMAKE_INSTALL_PREFIX=../../../submodules/gtest_installed ..
           make
-          make install --prefix=../../submodules/gtest_installed
+          make install  
           cd ../../..
       
       - name: Check Boost Installed
