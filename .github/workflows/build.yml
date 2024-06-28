@@ -77,6 +77,7 @@ jobs:
             echo "Error: Boost not installed correctly."
             exit 1
           else
+            ls submodules/boost_installed
             echo "Boost installed successfully."
           fi    
           
@@ -86,6 +87,7 @@ jobs:
             echo "Error: GTest not installed correctly."
             exit 1
           else
+            ls submodules/gtest_installed
             echo "GTest installed successfully."
           fi    
 
