@@ -78,6 +78,7 @@ jobs:
           ./build.sh run          
       - name: Clean tests folder and files 
         run: |
+          cd m1_workspace
           chmod +x build.sh 
           ./build.sh clean          
 
