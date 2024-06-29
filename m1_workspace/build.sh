@@ -11,14 +11,13 @@ function build() {
   cd $BUILD_DIR
   cmake ..
   make
-  mv *_example ../
+  mv gtest_* ../
   cd ..
 }
 
 function run() {
   if [ -d "$BUILD_DIR" ]; then
-    ./boost_example
-    ./gtest_example
+    ./gtest_*
   else
     echo "Build directory does not exist. Please run 'sh build.sh build' first."
     exit 1
@@ -28,7 +27,9 @@ function run() {
 function clean() {
   if [ -d "$BUILD_DIR" ]; then
     echo "execute shell command: rm -rf $BUILD_DIR"
+    echo "execute shell command: rm -rf ./gtest_* "
     rm -rf $BUILD_DIR
+    rm -rf ./gtest_*
   fi
 }
 

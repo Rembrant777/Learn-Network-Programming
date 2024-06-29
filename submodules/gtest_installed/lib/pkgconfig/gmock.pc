@@ -1,0 +1,10 @@
+libdir=/app/muduo/submodules/gtest_installed/lib
+includedir=/app/muduo/submodules/gtest_installed/include
+
+Name: gmock
+Description: GoogleMock (without main() function)
+Version: 1.14.0
+URL: https://github.com/google/googletest
+Requires: gtest = 1.14.0
+Libs: -L${libdir} -lgmock -lpthread
+Cflags: -I${includedir} -DGTEST_HAS_PTHREAD=1
