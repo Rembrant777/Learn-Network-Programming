@@ -78,7 +78,6 @@ jobs:
           ./build.sh run          
       - name: Clean tests folder and files 
         run: |
-          rm -rf  gtest_*
           chmod +x build.sh 
           ./build.sh clean          
 
