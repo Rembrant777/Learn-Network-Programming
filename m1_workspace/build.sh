@@ -17,7 +17,8 @@ function build() {
 
 function run() {
   if [ -d "$BUILD_DIR" ]; then
-    ./gtest_*
+    ./gtest_example
+    ./gtest_thread
   else
     echo "Build directory does not exist. Please run 'sh build.sh build' first."
     exit 1
