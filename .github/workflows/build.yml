@@ -49,7 +49,7 @@ jobs:
           GTEST_LIB_PATH=$(find /usr/lib -name libgtest.a)
           echo "GTEST_LIB_PATH=$GTEST_LIB_PATH" >> $GITHUB_ENV
 
-          tree -L 2 $GTEST_LIB_PATH
+          ls $GTEST_LIB_PATH
 
       - name: Find gmock library path
         run: |
@@ -58,6 +58,6 @@ jobs:
           echo "GMOCK_LIB_PATH=$GMOCK_LIB_PATH" >> $GITHUB_ENV
           echo "GMOCK_MAIN_LIB_PATH=$GMOCK_MAIN_LIB_PATH" >> $GITHUB_ENV
           
-          tree -L 2 $GMOCK_LIB_PATH
-          tree -L 2 $GMOCK_MAIN_LIB_PATH
+          ls $GMOCK_LIB_PATH
+          ls $GMOCK_MAIN_LIB_PATH
           
