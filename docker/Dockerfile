@@ -12,21 +12,18 @@ RUN apt-get update && \
     make \
     git \
     tree \
-    libprotobuf-dev protobuf-compiler libprotoc-dev libgoogle-perftools-dev \
+    #install boost lib here 
+    libboost-all-dev \ 
+    #install gtest lib here 
+    libgtest-dev \
+    libgmock-dev \
+    libprotobuf-dev \
+    protobuf-compiler libprotoc-dev libgoogle-perftools-dev \
     libc-ares-dev libcurl4-openssl-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Set the working directory to Muduo source
 WORKDIR /app/muduo
-
-# init git submodules like boost and gtest 
-RUN git submodule update --init --recursive 
-
-# build boost 
-RUN cd thirdparty/boost && ./bootstrap.sh && ./b2 
-
-# build google test 
-RUN cd thirdparty/googletest && mkdir build && cd build && cmake .. && make && make install
 
 # Entry point
 CMD ["/bin/bash"]

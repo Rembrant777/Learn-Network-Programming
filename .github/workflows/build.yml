@@ -40,10 +40,15 @@ jobs:
           echo "BOOST_INCLUDE_PATH=$BOOST_INCLUDE_PATH" >> $GITHUB_ENV
           echo "BOOST_LIB_PATH=$BOOST_LIB_PATH" >> $GITHUB_ENV
 
+          ls $BOOST_INCLUDE_PATH/*
+          ls $BOOST_LIB_PATH/*
+
       - name: Find gtest library path
         run: |
           GTEST_LIB_PATH=$(find /usr/lib -name libgtest.a)
           echo "GTEST_LIB_PATH=$GTEST_LIB_PATH" >> $GITHUB_ENV
+
+          ls $GTEST_LIB_PATH/*
 
       - name: Find gmock library path
         run: |
@@ -51,5 +56,9 @@ jobs:
           GMOCK_MAIN_LIB_PATH=$(find /usr/lib -name libgmock_main.a)
           echo "GMOCK_LIB_PATH=$GMOCK_LIB_PATH" >> $GITHUB_ENV
           echo "GMOCK_MAIN_LIB_PATH=$GMOCK_MAIN_LIB_PATH" >> $GITHUB_ENV
+          
+          ls $GMOCK_LIB_PATH/*
+          ls $GMOCK_MAIN_LIB_PATH/*
+          
 
       
