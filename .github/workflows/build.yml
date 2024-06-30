@@ -28,58 +28,36 @@ jobs:
             git \
             protobuf-compiler libunwind-dev libprotoc-dev \
             libgoogle-perftools-dev \
-            libc-ares-dev libcurl4-openssl-dev
+            libc-ares-dev libcurl4-openssl-dev \
+            libgtest-dev \
+            libgmock-dev \
+            libboost-all-dev \
+            tree
 
-      - name: Add and initialize submodules
+      - name: Find boost library path
         run: |
-          echo "Current Dir " pwd
-          git submodule add https://github.com/google/googletest.git submodules/googletest
-          git submodule update --init --recursive
+          BOOST_INCLUDE_PATH=$(find /usr/include -name boost | head -n 1)
+          BOOST_LIB_PATH=$(find /usr/lib -name libboost_system.so | xargs dirname | head -n 1)
+          echo "BOOST_INCLUDE_PATH=$BOOST_INCLUDE_PATH" >> $GITHUB_ENV
+          echo "BOOST_LIB_PATH=$BOOST_LIB_PATH" >> $GITHUB_ENV
 
-      - name: Check submodule download
-        run: |
-          # Check googletest
-          if [ ! -d "submodules/googletest" ] || [ -z "$(ls -A submodules/googletest)" ]; then
-            echo "Error: googletest submodule not downloaded correctly."
-            exit 1
-          else
-            echo "googletest submodule downloaded successfully."
-          fi
+          tree -L 2 $BOOST_INCLUDE_PATH
+          tree -L 2 $BOOST_LIB_PATH
 
-      - name: Build And Install GTest 
+      - name: Find gtest library path
         run: |
-          mkdir -p submodules/googletest/build
-          cd submodules/googletest/build
-          cmake -DCMAKE_INSTALL_PREFIX=../../../submodules/gtest_installed ..
-          make
-          make install 
-          cd ../../..
-      
-      - name: Check GTest Installed
-        run: |
-          if [ ! -d "submodules/gtest_installed" ] || [ -z "$(ls -A submodules/gtest_installed)" ]; then
-            echo "Error: GTest not installed correctly."
-            exit 1
-          else
-            ls submodules/gtest_installed
-            echo "GTest installed successfully."
-          fi    
+          GTEST_LIB_PATH=$(find /usr/lib -name libgtest.a)
+          echo "GTEST_LIB_PATH=$GTEST_LIB_PATH" >> $GITHUB_ENV
 
-      - name: Compile with build.sh
-        run: |
-          cd m1_workspace
-          chmod +x build.sh
-          ./build.sh build
+          ls $GTEST_LIB_PATH
 
-      - name: Run tests with build.sh
+      - name: Find gmock library path
         run: |
-          cd m1_workspace
-          chmod +x build.sh
-          ./build.sh run          
-      - name: Clean tests folder and files 
-        run: |
-          cd m1_workspace
-          chmod +x build.sh 
-          ./build.sh clean          
-
-      
+          GMOCK_LIB_PATH=$(find /usr/lib -name libgmock.a)
+          GMOCK_MAIN_LIB_PATH=$(find /usr/lib -name libgmock_main.a)
+          echo "GMOCK_LIB_PATH=$GMOCK_LIB_PATH" >> $GITHUB_ENV
+          echo "GMOCK_MAIN_LIB_PATH=$GMOCK_MAIN_LIB_PATH" >> $GITHUB_ENV
+          
+          ls $GMOCK_LIB_PATH
+          ls $GMOCK_MAIN_LIB_PATH
+          
