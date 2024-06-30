@@ -24,6 +24,7 @@ endif()
 # Find Google Test
 find_package(GTest REQUIRED)
 
+
 # Include GTest directories
 include_directories(${GTEST_INCLUDE_DIRS})
 
